@@ -23,6 +23,10 @@ mongoose.connect(
   "mongodb+srv://abhradip360:saha@abhra.dtyeowf.mongodb.net/?retryWrites=true&w=majority"
 );
 
+app.use("/",(req,res)=>{
+  res.send("ok")
+})
+
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -161,6 +165,6 @@ app.get("/post/:id", async (req, res) => {
   const postDoc = await Post.findById(id).populate("author", ["username"]);
   res.json(postDoc);
 });
-
-app.listen(4000 || process.env.PORT);
+const port=8000 || process.env.PORT;
+app.listen(port,()=>{console.log(`Running on ${port}`)});
 //
