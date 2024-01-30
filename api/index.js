@@ -21,11 +21,8 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose.connect(
   "mongodb+srv://abhradip360:saha@abhra.dtyeowf.mongodb.net/?retryWrites=true&w=majority"
-);
+).then(console.log("Database connected"));
 
-app.use("/",(req,res)=>{
-  res.send("ok")
-})
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
