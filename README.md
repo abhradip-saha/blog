@@ -1,4 +1,4 @@
-# Live Demo Link
+# LIVE DEMO LINK
 https://blogabhra.netlify.app/
 
 # DESCRIPTION
@@ -10,4 +10,4 @@ https://github.com/abhradip-saha/blog-frontend
 # GITHUB REPOSITORY LINK OF BACKEND DEPLOYED ON RENDER
 https://github.com/abhradip-saha/blog-backend
 
-# Database
+# DATABASE
