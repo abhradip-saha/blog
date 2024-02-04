@@ -14,3 +14,8 @@ https://github.com/abhradip-saha/blog-frontend
 https://github.com/abhradip-saha/blog-backend
 
 # DATABASE
+The details of users and posts are stored in MongoDB Database
+
+![Screenshot (129)](https://github.com/abhradip-saha/blog/assets/110524706/4ed75fc5-8802-4101-9b8c-0a1db63a186a)
+
+![Screenshot (130)](https://github.com/abhradip-saha/blog/assets/110524706/46d1deca-cbd1-4837-8105-074f7b7fda3d)
