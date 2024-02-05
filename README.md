@@ -4,8 +4,7 @@ https://blogabhra.netlify.app/
 # DESCRIPTION
 This is a MERN blog website in which an user can post a blog and edit and delete the blog posted by that user provided that the user should be logged in. However an user can view the blogs of other users even without logging in.
 
-![Screenshot (128)](https://github.com/abhradip-saha/blog/assets/110524706/bc644a8d-9451-4f60-a0d8-6f37858443ac)
-
+![Screenshot (131)](https://github.com/abhradip-saha/blog/assets/110524706/9139e20b-4904-43d2-9fb0-040a5114eea3)
 
 # GITHUB REPOSITORY LINK OF FRONTEND DEPLOYED ON NETLIFY
 https://github.com/abhradip-saha/blog-frontend
