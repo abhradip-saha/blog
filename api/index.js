@@ -8,7 +8,7 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const uploadMiddleware = multer({ dest: "uploads/" });
+const uploadMiddleware = multer({ dest: "uploads" });
 const fs = require("fs");
 
 const salt = bcrypt.genSaltSync(10);
@@ -42,6 +42,7 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
   const passOk = bcrypt.compareSync(password, userDoc.password);
+  
   if (passOk) {
     // logged in
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
@@ -70,7 +71,10 @@ app.post("/logout", (req, res) => {
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
   const { originalname, path } = req.file;
+  console.log(originalname)
+  console.log(path)
   const parts = originalname.split(".");
+  console.log(parts)
   const ext = parts[parts.length - 1];
   const newPath = path + "." + ext;
   fs.renameSync(path, newPath);
@@ -99,12 +103,16 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   }
-
+  // console.log(res.file)
   const { token } = req.cookies;
+  // console.log(token)
   jwt.verify(token, secret, {}, async (err, info) => {
     // if (err) throw err;
+   
     const { id, title, summary, content } = req.body;
     const postDoc = await Post.findById(id);
+    // console.log(info)
+    // console.log(postDoc)
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     if (!isAuthor) {
       return res.status(400).json("you are not the author");
@@ -134,6 +142,7 @@ app.delete("/post", uploadMiddleware.single("file"), async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     // if (err) throw err;
+    
     const { id, title, summary, content } = req.body;
     const postDoc = await Post.findById(id);
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
@@ -162,6 +171,6 @@ app.get("/post/:id", async (req, res) => {
   const postDoc = await Post.findById(id).populate("author", ["username"]);
   res.json(postDoc);
 });
-const port=8000 || process.env.PORT;
+const port=8001 || process.env.PORT;
 app.listen(port,()=>{console.log(`Running on ${port}`)});
 //
